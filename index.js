@@ -4,8 +4,64 @@ const env = 'development';
 const config = require('./knexfile.js')[env];
 const knex = require('knex')(config);
 
-const sql = knex('co_ghost_towns').toString();
 
-console.log(sql);
+knex('towns')
+// .join ('counties', 'towns.county_id', '=' , 'counties.id')
 
-knex.destroy();
+///////To Delete///////
+.delete()
+.where ('id' , 14)
+
+
+///////To Update///////
+// .update ({
+//   name: 'TESTING UPDATE'
+// } , '*')
+// .where('id' , 14)
+
+///////Insert New Row//////
+// .insert({
+//   name: 'TESTING',
+//   date_est: 2016,
+//   date_abnd: null,
+//   why_abnd: null,
+//   county_id: 2,
+//   elevation: 5280,
+//   cemetery: 'FALSE',
+//   gold_found: 'TRUE',
+//   tour: 'FALSE',
+//   date_visited: null
+// } , '*')
+
+
+// INSERT INTO towns (name, date_est, date_abnd, why_abnd, county_id, elevation, cemetery, gold_found, tour, date_visited) VALUES ('Nevadaville', 1859, 1900, 'Massive fire', 2 , 9050 , TRUE , TRUE , FALSE , NULL);
+
+///////Querying the Database///////
+// .select('towns.name', 'towns.county_id' , 'counties.name')
+// // .select ('towns.id' ,'towns.name', 'counties.name', 'counties.id')
+// .where ('date_est' , '<=' , 1890)
+// .where ({gold_found: true})
+// .orWhere ('tour' , false)
+// .orderBy('towns.name' , 'DESC')
+// .limit(10)
+
+///////Promises///////
+.then((result) => {
+  console.log(result);
+  knex.destroy();
+})
+
+.catch ((err) => {
+  console.error(err);
+  knex.destroy();
+  process.exit(1);
+});
+
+///////Previous Testing///////
+// const sql = knex('users').where('name' , userName).toString(); //SQL Injection prevention
+
+// const sql = knex('co_ghost_towns').toString(); //1st test
+
+// console.log(sql);
+//
+// knex.destroy();
