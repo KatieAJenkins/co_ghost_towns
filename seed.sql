@@ -1,7 +1,5 @@
-seed.sql
-
-DELETE FROM towns;
-DELETE FROM counties;
+DELETE FROM towns; /*delete from foreign table 1st*/
+DELETE FROM counties; /*delete from primary table second*/
 
 INSERT INTO counties (name)
 VALUES ('El Paso');
