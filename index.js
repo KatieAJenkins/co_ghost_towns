@@ -34,7 +34,7 @@ knex('towns')
 // } , '*')
 
 ///////Querying the Database///////
-.select('towns.name' , 'towns.county_id' ,'counties.id' , 'counties.name')
+.select('towns.name AS towns_name' , 'towns.county_id' ,'counties.id' , 'counties.name AS counties_name')
 // // .select ('towns.id' ,'towns.name', 'counties.name', 'counties.id')
 // .where ('date_est' , '<=' , 1890)
 // .where ({gold_found: true})
